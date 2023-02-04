@@ -1,0 +1,25 @@
+
+
+.card {
+    position: relative;
+}
+
+.post-control {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+}
+
+.post-control p {
+    cursor: pointer;
+}
+
+.post-title {
+    position: relative;
+    top: -10px;
+}
+
+.comments {
+    cursor: pointer;
+}

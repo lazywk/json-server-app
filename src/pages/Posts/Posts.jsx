@@ -80,7 +80,7 @@ export const Posts = () => {
     }, [])
     return (
         <div className="container">
-            <div className="mx-5 my-3 d-flex justify-content-between align-item-center">
+            <div className="my-3 d-flex justify-content-between align-item-center">
                 <h2 className="h2 text-center my-3">Posts</h2>
                 <button className="btn btn-success my-3" onClick={() => setPostModal(true)}>+Add Post</button>
             </div>
@@ -89,7 +89,7 @@ export const Posts = () => {
                     <ul className="row mx-auto mb-4 gy-3 justify-content-start p-0" onClick={findPost}>
                         {
                             posts.map(post => (
-                                <li key={post.id} className="card shadow-sm py-3 me-3" style={{ height: "200px", width: "320px" }}>
+                                <li key={post.id} className="card shadow-sm py-3 me-4" style={{ height: "200px", width: "320px" }}>
                                     <h3 className="h5 text-capitalize mb-4 text-secondary post-title">{post.post_title}</h3>
                                     <p className="fst-italic blockquote-footer">{post.post_value}</p>
 

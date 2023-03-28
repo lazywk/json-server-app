@@ -21,8 +21,8 @@
       "post_value": "fwefw",
       "comments": [
         {
-          "author":"alivali@gmail.com",
-          "text":"yaxshi"
+          "author": "alivali@gmail.com",
+          "text": "yaxshi"
         }
       ],
       "author": "soli@gmail.com",
@@ -34,6 +34,13 @@
       "comments": [],
       "author": "alivali@gmail.com",
       "id": 2
+    },
+    {
+      "post_title": "test",
+      "post_value": "test test",
+      "comments": [],
+      "author": "soli@gmail.com",
+      "id": 3
     }
   ]
 }

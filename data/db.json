@@ -1,48 +1,39 @@
 {
   "users": [
     {
-      "email": "doniyor@gmail.com",
-      "password": "$2a$10$y2gv5mUXUmgRR7KXetATCO3ckSjbVBKpE.VSKO0okB/UPn75ezvqe",
-      "first_name": "Doniyor",
-      "last_name": "Eshmamatov",
+      "email": "alivali@gmail.com",
+      "password": "$2a$10$sHMgk2WgS7oRzLwZ9ND/vu6dI.SivXUvlGUKf7iznJN847SvnY8t6",
+      "first_name": "Ali",
+      "last_name": "Valiyev",
       "id": 1
     },
     {
-      "email": "otabek@gmail.com",
-      "password": "$2a$10$cC3c1gy6UcOk5AiVQAGKse42Aq6tkXrbJhupmgRE7lruHVS8yaJMO",
-      "first_name": "Otabek",
-      "last_name": "Rajabov",
+      "email": "soli@gmail.com",
+      "password": "$2a$10$BRzNY6Vd/ADCvINxda7sKuMrkkRBcyQj1QF7UB9rE3Om/cT1UiFXi",
+      "first_name": "soli",
+      "last_name": "soliyev",
       "id": 2
-    },
-    {
-      "email": "bobur@gmail.com",
-      "password": "$2a$10$JGXHWFoFJMCh7tLZ6cNP1uiwxrTHrSj.lgv4yHmNY9qzXuhU1YBC6",
-      "first_name": "Bobur",
-      "last_name": "Jo`rayev",
-      "id": 4
     }
   ],
   "posts": [
     {
-      "post_title": "Code yozish",
-      "post_value": "Code yozdim javascriptda",
-      "comments": [],
-      "author": "doniyor@gmail.com",
+      "post_title": "dewdfwe",
+      "post_value": "fwefw",
+      "comments": [
+        {
+          "author":"alivali@gmail.com",
+          "text":"yaxshi"
+        }
+      ],
+      "author": "soli@gmail.com",
       "id": 1
     },
     {
-      "post_title": "Matematika",
-      "post_value": "Matematikadan 100ta misol yechdim",
+      "post_title": "edit",
+      "post_value": "swdqwdqdwefjwehqfvqwuygqwuofywqfgqw\nwfiygqwpfgwqpfqgwf[qwf\nfgifqwufqwiufgwqfuywqf",
       "comments": [],
-      "author": "otabek@gmail.com",
+      "author": "alivali@gmail.com",
       "id": 2
-    },
-    {
-      "post_title": "Pubg",
-      "post_value": "kechasi soat 2 gacha pubg o`ynadim",
-      "comments": [],
-      "author": "bobur@gmail.com",
-      "id": 3
     }
   ]
 }

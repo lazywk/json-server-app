@@ -11,9 +11,11 @@ export const Posts = () => {
     const [posts, setPosts] = useState([]);
     const [postModal, setPostModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
+    const [commitModal, setCommitModal] = useState(false)
     const [postId, setPostId] = useState();
     const postValueTitle = useRef();
     const postTitleVal = useRef();
+    const commitVal = useRef();
     const { user } = useContext(UserContext);
 
     async function getPosts() {
@@ -75,6 +77,7 @@ export const Posts = () => {
             .catch(err => console.log(err))
     }
 
+
     useEffect(() => {
         getPosts();
     }, [])
@@ -93,14 +96,20 @@ export const Posts = () => {
                                     <h3 className="h5 text-capitalize mb-4 text-secondary post-title">{post.post_title}</h3>
                                     <p className="fst-italic blockquote-footer">{post.post_value}</p>
 
-                                    <div className="post-control">
-                                        <p className="p-2 me-2 text-primary m-0" onClick={() => setEditModal(true)} id={post.id}>edit</p>
-                                        <p className="p-2 text-primary m-0" onClick={() => deletePost(post.id)}>delete</p>
-                                    </div>
+
+                                    {
+                                        user.email === post.author ?
+                                            <div className="post-control">
+                                                <p className="p-2 me-2 text-primary m-0" onClick={() => setEditModal(true)} id={post.id}>edit</p>
+                                                <p className="p-2 text-primary m-0" onClick={() => deletePost(post.id)}>delete</p>
+                                            </div> : ""
+                                    }
+
                                     <div className="mt-auto d-flex justify-content-between align-item-center">
-                                        <p className="p-0 m-0 fst-italic text-primary text-decoration-underline comments">{post.comments.length} comments</p>
+                                        <p onClick={() => setCommitModal(true)} className="p-0 m-0 fst-italic text-primary text-decoration-underline comments" id={post.id}>{post.comments.length} comments</p>
                                         <a href={`mailto:${post.author}`} className="fst-italic" >{post.author}</a>
                                     </div>
+
                                 </li>
                             ))
                         }
@@ -123,6 +132,15 @@ export const Posts = () => {
                         <input className="form-control my-3" placeholder="Post Title" ref={postTitleVal} />
                         <textarea ref={postValueTitle} className="form-control" placeholder="Post Content" style={{ height: "150px", resize: 'none' }} />
                         <button className="btn btn-primary mt-2 ms-auto d-block px-5">send</button>
+                    </form>
+                </Modal>) : ('')
+            }
+
+            {
+                commitModal ? (<Modal modal={commitModal} setModal={setCommitModal} modalTitle="Comments">
+                    <form onSubmit={() => addCommit(e)}>
+                        <textarea ref={commitVal} className="form-control" placeholder="Write your comment" style={{ height: "50px", resize: 'none' }} />
+                        <button className="btn btn-primary mt-2 ms-auto d-block px-5">Add comment</button>
                     </form>
                 </Modal>) : ('')
             }

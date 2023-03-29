@@ -18,6 +18,8 @@ export const Posts = () => {
     const commitVal = useRef();
     const { user } = useContext(UserContext);
 
+    const [commitedPost, setCommitedPost] = useState({})
+
     async function getPosts() {
         const data = await axios.get("http://localhost:8080/posts")
         setPosts(data.data);
@@ -52,10 +54,38 @@ export const Posts = () => {
             .catch(err => console.log(err))
     }
 
-    const findPost = (evt) => {
-        if (evt.target.id) {
-            setPostId(evt.target.id)
+    const findPost = (e) => {
+        if (e.target.id) {
+            setPostId(e.target.id)
         }
+    }
+
+    async function getOneCommit(id) {
+        const data = await axios.get('http://localhost:8080/posts/' + id)
+        setCommitedPost(data.data);
+    }
+
+    async function addNewCommit(id) {
+        const newCommit = await axios.put('http://localhost:8080/posts/' + id, {
+            post_title: commitedPost.post_title,
+            post_value: commitedPost.post_value,
+            comments: [...commitedPost.comments, commitVal.current.value],
+            author: commitedPost.email,
+        })
+        toast.success("Comment added soccessifull")
+        getPosts();
+    }
+
+
+    const getAddCommit = (e) => {
+        setCommitModal(true);
+        getOneCommit(e.target.id);
+    }
+
+    const addCommit = (e) => {
+        e.preventDefault();
+        addNewCommit(commitedPost.id)
+        setCommitModal(false)
     }
 
 
@@ -106,7 +136,7 @@ export const Posts = () => {
                                     }
 
                                     <div className="mt-auto d-flex justify-content-between align-item-center">
-                                        <p onClick={() => setCommitModal(true)} className="p-0 m-0 fst-italic text-primary text-decoration-underline comments" id={post.id}>{post.comments.length} comments</p>
+                                        <p onClick={(e) => getAddCommit(e)} className="p-0 m-0 fst-italic text-primary text-decoration-underline comments" id={post.id}>{post.comments.length} comments</p>
                                         <a href={`mailto:${post.author}`} className="fst-italic" >{post.author}</a>
                                     </div>
 
@@ -138,7 +168,14 @@ export const Posts = () => {
 
             {
                 commitModal ? (<Modal modal={commitModal} setModal={setCommitModal} modalTitle="Comments">
-                    <form onSubmit={() => addCommit(e)}>
+                    <form onSubmit={addCommit}>
+                        {
+                            commitedPost.comments.length? <ul className="list-group py-2">
+                                {
+                                    commitedPost.comments?.map(el => <li key={el} className="list-group-item">{el}</li>)
+                                }
+                            </ul>: <p className="text-danger fs-5 fw-bold">Comments not found</p>
+                        }
                         <textarea ref={commitVal} className="form-control" placeholder="Write your comment" style={{ height: "50px", resize: 'none' }} />
                         <button className="btn btn-primary mt-2 ms-auto d-block px-5">Add comment</button>
                     </form>
